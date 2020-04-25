@@ -16,6 +16,7 @@
 	
 import java.util.List; 
 import java.util.ArrayList;
+import java.util.LinkedList;
  
 
 
@@ -36,6 +37,12 @@ public class Principal {
 		
 		// criando uma lista de String
 		
+		/*
+		Geralmente, não nos interessa uma lista com vários tipos de objetos misturados; no dia-a-dia,
+		usamos listas de um determinado tipo como ex: contas correntes. No Java 5.0, podemos usar o recurso de Generics para
+		restringir as listas a um determinado tipo de objetos (e não qualquer Object ): EX :				
+		*/
+		
 		List<String> listaNomes = new ArrayList<String>(); // especificando o tipo da lista
 		
 		listaNomes.add("Claudio");
@@ -50,8 +57,15 @@ public class Principal {
 		System.out.println("------------------");
 		
 		//criando uma lista de Contas Correntes:	
+		/*O uso de Generics também elimina a necessidade de casting, já que, seguramente, todos os objetos
+		inseridos na lista serão do tipo ContaCorrente : conforme o ex:*/
 		
-		List<ContaCorrente> lista = new ArrayList<ContaCorrente>(); 
+	   /*	A partir do Java 7, se você instancia um tipo genérico na mesma linha de sua declaração, não é
+		necessário passar os tipos novamente, basta usar new ArrayList<>() . É conhecido como operador
+		diamante: Ex :
+		List<ContaCorrente> contas = new ArrayList<>();*/
+		
+		List<ContaCorrente> lista = new ArrayList<>(); 
 		
 		// criando as contas
 		
@@ -103,6 +117,57 @@ public class Principal {
 		System.out.println(lista.contains(c2)); // false
 		System.out.println("\n");
 		System.out.println("------------------");
+		
+		
+		
+		// criando as contas poupanças
+		
+		List<ContaPoupanca> lista2 = new LinkedList<ContaPoupanca>(); //
+		
+		ContaPoupanca cp1 = new ContaPoupanca();
+		ContaPoupanca cp2 = new ContaPoupanca();
+		ContaPoupanca cp3 = new ContaPoupanca();
+		ContaPoupanca cp4 = new ContaPoupanca();
+		
+		cp1.numero = 10;
+		cp1.titular = "Bibiu";
+		cp1.deposita(350);
+		
+		cp2.numero = 20;
+		cp2.titular = "Flavio";
+		cp2.deposita(400);
+		
+		cp3.numero = 30;
+		cp3.titular = "Ivo";
+		cp3.deposita(450);
+		
+		cp4.numero = 40;
+		cp4.titular = "Sandra";
+		cp4.deposita(500);
+		
+		// inserindo os objetos na ordem 
+		
+		lista2.add(cp1);
+		lista2.add(cp2);
+		lista2.add(cp3);
+		
+		// inserindo no inicio da lista 
+		
+		//lista2.add(0, cp4);
+		
+		// inserindo no final da lista 
+		
+		lista2.add(3, cp4);
+		
+		System.out.println(" Inserindo conta poupança no inicio e final da lista ! \n");
+		
+		for(int i=0; i< lista2.size(); i++) {
+			System.out.println("Numero : "+ lista2.get(i).numero + " - Nome : "+ lista2.get(i).titular + " - Saldo : "+ lista2.get(i).getSaldo() );
+		}
+		
+		
+		System.out.println(" ---------------- \n");
+						
 	
 	}
 
